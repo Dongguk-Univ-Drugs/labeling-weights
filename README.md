@@ -20,8 +20,8 @@
 
 ## TODO
 **👉 colab에서 clone후 바로 사용할 수 있게 제작**
-- [ ] `recently_labeled`안에 저장된 txt파일들을 인식해서 자동으로 `train.txt`생성해주는 code 
-- [ ] `train.txt` 생성 후 `recently_labeled` 에서 `on_training`으로 복사와 내부 디렉토리를 비워주는 code
+- [x] `recently_labeled`안에 저장된 txt파일들을 인식해서 자동으로 `train.txt`생성해주는 code 
+- [x] `train.txt` 생성 후 `recently_labeled` 에서 `on_training`으로 복사와 내부 디렉토리를 비워주는 code
 - [ ] 학습이 종료되면 가중치를 자동으로 저장해주는 code → 저희가 fork한 darknet repository를 수정해야겠네요.
 
 ## example
