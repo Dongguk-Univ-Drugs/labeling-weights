@@ -63,22 +63,29 @@ def get_directories(root_dir):
 
 
 def create_txt_file(root_dir, image_path):
-    to_class = image_path[len(root_dir) + 1]
-    file_name = image_path[len(root_dir) + 3:image_path.index('.png')]
-    
-    x_c, y_c, w, h = get_anotation(image_path)
+    dest = image_path
+    to_class = dest[len(root_dir) + 1]
+    file_name = dest[len(root_dir) + 3 : -4]
+
+    x_c, y_c, w, h = get_anotation(dest)
     to_file = f'{ord(to_class) - 65} {x_c} {y_c} {w} {h}'
-    
-    f = open(f'{root_dir}/{to_class}/{file_name}.txt', 'w+')
+
+    # with files - max item number 1600
+    new_filename = int(file_name) + 1600 * (ord(to_class) - 64)
+
+    f = open(f'{root_dir}/{to_class}/{new_filename}.txt', 'w+')
     f.write(to_file)
     f.close()
+    print(image_path +' =>' + f'{root_dir}/{to_class}/{new_filename}.png')
+    os.rename(image_path, f'{root_dir}/{to_class}/{new_filename}.png')
 
-    print(f'{root_dir}/{to_class}/{file_name}.txt --> DONE')
+    print(f'{root_dir}/{to_class}/{new_filename}.txt --> DONE')
 
 
 if __name__ == "__main__":
     root_dir = '/Users/iseunghwan/Downloads/dataset'
     tasks = get_directories(root_dir)
     for task in tasks:
-        create_txt_file(root_dir, task)
+        if '.png' in task:
+            create_txt_file(root_dir, task)
     print('done')

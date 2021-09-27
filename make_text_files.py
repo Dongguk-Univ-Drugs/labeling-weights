@@ -7,7 +7,7 @@ def get_filenames():
         result = []
         filenames = os.listdir('./recently_labeled')
         for filename in filenames:
-            result.append(filename[:-4])
+            result.append(filename)
         return result
     except PermissionError:
         pass
@@ -20,8 +20,8 @@ def make_text_file(filenames):
         result = []
         cnt_items = 0
         for filename in filenames:
-            if filename.isnumeric():
-                item_to_path = f'data/obj/{filename}.jpg\n'
+            if '.png' in filename:
+                item_to_path = f'data/obj/{filename}\n'
                 cnt_items += 1
                 result.append(item_to_path)
         # write into text file
